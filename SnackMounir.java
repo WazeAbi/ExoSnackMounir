@@ -1,5 +1,6 @@
 package mounir;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SnackMounir {	
@@ -17,6 +18,8 @@ public class SnackMounir {
 		static int priceFrite = 2;
 		static int Somme;
 		static boolean isChoiceStop = false;
+	    static ArrayList<Article> mesArticles = new ArrayList<Article>();
+	    
 		
 	public static void main(String[] args) {
 		while(!isChoiceStop) {
@@ -33,7 +36,9 @@ public class SnackMounir {
 		case 1: 
 			System.out.println("Combien de Kebab voulez-vous ? ");
 			nbKebab = saisiNb.nextInt();
-			Somme+=(nbKebab * priceKebab);
+			Article kebab = new Article(nbKebab, "Kebab", priceKebab);
+			mesArticles.add(kebab);
+			
 			break;
 			
 		
@@ -41,26 +46,31 @@ public class SnackMounir {
 		case 2: 
 			System.out.println("Combien de Chwarma voulez-vous ? ");
 			nbChwarma = saisiNb.nextInt();
-			Somme+=(nbChwarma * priceChwarma);
+			Article chwarma = new Article(nbChwarma, "Chwarma", priceChwarma);
+			mesArticles.add(chwarma);
 			break;
 		
 		case 3: 
 			System.out.println("Combien de Burgir voulez-vous ? ");
 			nbBurgir = saisiNb.nextInt();
-			Somme+=(nbBurgir * priceBurgir);
+			Article burgir = new Article(nbBurgir, "Burgir", priceBurgir);
+			mesArticles.add(burgir);
+			
 			break;
 		
 		case 4: 
 			System.out.println("Combien de Tacos voulez-vous ? ");
 			nbTacos = saisiNb.nextInt();
-			Somme+=(nbTacos * priceTacos);
+			Article tacos = new Article(nbTacos, "Tacos", priceTacos);
+			mesArticles.add(tacos);
 			break;
 
 		
 		case 5: 
 			System.out.println("Combien de Frite voulez-vous ? ");
 			nbFrite = saisiNb.nextInt();
-			Somme+=(nbFrite * priceFrite);
+			Article frite = new Article(nbFrite, "Frite", priceFrite);
+			mesArticles.add(frite);
 			break;
 			
 		
@@ -80,12 +90,26 @@ public class SnackMounir {
 		}
 		else {
 			isChoiceStop=true;
-			
+			System.out.println("**************************");
+			System.out.println("***** Bienvenue Chez *****");
+			System.out.println("*****  Snack Mounir  *****");
+			System.out.println("**************************");
+			System.out.println("**  Nombre   Type   Prix**");
+			for(int i=0 ;i<=mesArticles.size()-1 ;i++) {
+				System.out.println("**   "+ mesArticles.get(i).getQuantity() +"       "+mesArticles.get(i).getType() +"   "+mesArticles.get(i).getPrice()+"**");
+				Somme+=mesArticles.get(i).getPrice() * mesArticles.get(i).getQuantity();
+			}
+			System.out.println("**************************");
+			System.out.println("**************************");
 			System.out.println("La somme total est de " + Somme + "€");
+		
+				}
+				
+			
 		}
 			
 		
 	}
 		
 
-}
+
